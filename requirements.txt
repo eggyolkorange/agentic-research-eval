@@ -1,0 +1,8 @@
+langgraph
+langchain-anthropic
+pydantic
+yfinance
+requests
+python-dotenv
+pandas
+mcp
