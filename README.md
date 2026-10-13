@@ -1,12 +1,9 @@
-# Agentic Equity Research Assistant: Prototype and Evaluation [In Progress]
+# Agentic Equity Research Assistant: Prototype and Evaluation
 
 This project aims to build AI agent that drafts one-page research briefs on listed companies, with a
 **Reviewer step** that checks every number against the source data and a
-**human approval step** before a brief is final. The project also aims to measure how much
+**human approval step** before a brief is final. The project also measures how much
 the Reviewer step improves accuracy.
-
-## Headline result
-> -
 
 ## How it works
 Ticker -> Fetch data (yfinance, SEC EDGAR) -> Draft brief (LLM + Pydantic) -> Reviewer (supported?) -> Human approval -> Final brief
