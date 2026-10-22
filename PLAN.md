@@ -15,23 +15,25 @@ Tick boxes as you go (`- [x]`) and commit after every work session.
 **Goal:** reliable data for every company, plus the true answers to check the AI against.
 
 1. Open a terminal in the project folder and turn on the environment
-    - [ ] `.venv\Scripts\Activate.ps1` (you should see `(.venv)`)
+    - [X] `.venv\Scripts\Activate.ps1` (you should see `(.venv)`)
 2. Test the data script
-    - [ ] Run `python -m tools.data`
-    - [ ] Check it prints 3 lines (JPM, AAPL, KO) with a name, fiscal year end and price change
-3. Add your API key
-    - [ ] Open `.env` and paste your key after `ANTHROPIC_API_KEY=` (or `OPENAI_API_KEY=`)
-    - [ ] Never commit `.env` (it is already blocked by `.gitignore`)
+    - [x] Run `python -m tools.data`
+    - [x] Check it prints 3 lines (JPM, AAPL, KO) with a name, fiscal year end and price change
+3. Connect to Gemini
+    - [x] Get a free key at aistudio.google.com and add it to `.env` as `GOOGLE_API_KEY=`
+    - [x] Never commit `.env` (it is already blocked by `.gitignore`)
+    - [ ] Find a model name that works: list them with `python -c "from dotenv import load_dotenv; load_dotenv(); import os; from google import genai; c=genai.Client(api_key=os.environ['GOOGLE_API_KEY']); [print(m.name) for m in c.models.list() if 'flash' in m.name]"`
+    - [ ] Test one with a "Say hi in 3 words" call, then add it to `.env` as `GEMINI_MODEL=`
 4. Choose your companies
-    - [ ] Keep 10 tickers in `eval/ground_truth.csv` (e.g. JPM, BAC, GS, AAPL, MSFT, NVDA, KO, PG, WMT, MCD) and delete the other rows
-5. Write down the true answers (ground truth)
-    - [ ] For each company, fill in: fiscal year, revenue, net income, 1-year price change
-    - [ ] Take them from the same source the agent uses (run `get_company_data` and copy the numbers), then spot-check 2 or 3 against the company's annual report
-    - [ ] Note your source in `source_notes`
+    - [x] 10 tickers set in `tools/snapshot.py` (JPM, BAC, GS, AAPL, MSFT, NVDA, KO, PG, WMT, MCD)
+5. Take the data snapshot and build the ground truth
+    - [x] Run `python -m tools.snapshot` (once only: it makes `eval/snapshot.json` and fills `eval/ground_truth.csv`)
+    - [ ] Spot-check revenue and net income for 3 companies (e.g. JPM, AAPL, KO) against their annual report (10-K) for the fiscal year shown
+    - [ ] Write what you found in `source_notes`, e.g. `checked vs 10-K: matches`
 6. Save
     - [ ] Commit and push
 
-**Done when:** the data script works and `ground_truth.csv` is filled for all 10 companies.
+**Done when:** Gemini responds, the snapshot exists, and 3 companies are spot-checked.
 
 ---
 
@@ -44,9 +46,9 @@ Build it one step at a time in `agent/workflow.py`, testing each step before the
 1. Define the brief
     - [ ] In `agent/schema.py`, add fields for revenue, net income and price change, each with a source
 2. Fetch
-    - [ ] `fetch()` calls `get_company_data(ticker)` and returns the data
+    - [ ] `fetch()` reads from `snapshot.json` and returns the data
 3. Draft
-    - [ ] `draft()` sends the data to the LLM and asks it to fill the brief using ONLY that data
+    - [ ] `draft()` sends the data to Gemini (model from `GEMINI_MODEL`) and asks it to fill the brief using ONLY that data
     - [ ] Test on JPM and print the result
     - [ ] Save the output to `briefs/JPM_baseline.json`
 4. Review
@@ -134,4 +136,4 @@ Build it one step at a time in `agent/workflow.py`, testing each step before the
 
 ## Work log (one line per session, helps with feedback)
 
--
+- 20 Oct: set up env, switched to Gemini, built snapshot script, took snapshot

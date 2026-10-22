@@ -1,16 +1,11 @@
 ticker,sector,company,fiscal_year,revenue_usd_m,net_income_usd_m,net_margin_pct,price_change_1y_pct,key_risk,source_notes
-JPM,Banks,,,,,,,,
-BAC,Banks,,,,,,,,
-C,Banks,,,,,,,,
-WFC,Banks,,,,,,,,
-GS,Banks,,,,,,,,
-AAPL,Tech,,,,,,,,
-MSFT,Tech,,,,,,,,
-NVDA,Tech,,,,,,,,
-GOOGL,Tech,,,,,,,,
-META,Tech,,,,,,,,
-KO,Consumer,,,,,,,,
-PG,Consumer,,,,,,,,
-WMT,Consumer,,,,,,,,
-MCD,Consumer,,,,,,,,
-NKE,Consumer,,,,,,,,
+JPM,Banks,JPMorgan Chase & Co.,2025-12-31,181847.0,57048.0,31.37,12.69,,yfinance snapshot 2026-10-20
+BAC,Banks,Bank of America Corporation,2025-12-31,113097.0,30509.0,26.98,-1.35,,yfinance snapshot 2026-10-20
+GS,Banks,"The Goldman Sachs Group, Inc.",2025-12-31,58283.0,17176.0,29.47,15.94,,yfinance snapshot 2026-10-20
+AAPL,Tech,Apple Inc.,2025-09-30,416161.0,112010.0,26.92,30.84,,yfinance snapshot 2026-10-20
+MSFT,Tech,Microsoft Corporation,2026-06-30,331839.0,133749.0,40.31,3.66,,yfinance snapshot 2026-10-20
+NVDA,Tech,NVIDIA Corporation,2026-01-31,215938.0,120067.0,55.6,17.42,,yfinance snapshot 2026-10-20
+KO,Consumer,The Coca-Cola Company,2025-12-31,47941.0,13107.0,27.34,40.86,,yfinance snapshot 2026-10-20
+PG,Consumer,The Procter & Gamble Company,2026-06-30,87032.0,16046.0,18.44,7.77,,yfinance snapshot 2026-10-20
+WMT,Consumer,Walmart Inc.,2026-01-31,713163.0,21893.0,3.07,12.98,,yfinance snapshot 2026-10-20
+MCD,Consumer,McDonald's Corporation,2025-12-31,26885.0,8563.0,31.85,-18.24,,yfinance snapshot 2026-10-20

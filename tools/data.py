@@ -1,10 +1,13 @@
 """Data fetchers. Start here on day 1."""
 import yfinance as yf
+from pprint import pprint
 
 
 def get_company_data(ticker: str) -> dict:
-    t = yf.Ticker(ticker)
+    t = yf.Ticker(ticker) 
+    # connects to Yahoo Finance for the comppany
     info = t.info
+    # basic details: name, sector
     income = t.income_stmt  # annual, most recent column first
     hist = t.history(period="1y")
     return {
@@ -22,3 +25,6 @@ if __name__ == "__main__":
     for tk in ["JPM", "AAPL", "KO"]:
         d = get_company_data(tk)
         print(tk, d["company"], d["fiscal_year_end"], d["price_change_1y_pct"])
+
+# company data is printed only when tools/data.py is ran directly i.e. python -m tools.data
+# loops through 3 tickers, gets each company's data, and prints 4 things
