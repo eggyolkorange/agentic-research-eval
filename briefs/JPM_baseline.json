@@ -1,0 +1,21 @@
+{
+  "ticker": "JPM",
+  "company": "JPMorgan Chase & Co.",
+  "summary": "JPMorgan Chase & Co. is a Financial Services company that generated $181,847 million in total revenue and $57,048 million in net income for the fiscal year ending 2025-12-31. The firm recorded diluted earnings per share of 20.02 alongside net interest income of $95,443 million. Over the one-year period, the stock registered a price increase of 12.69%.",
+  "revenue": {
+    "value": 181847.0,
+    "period": "FY ending 2025-12-31",
+    "source": "income_statement: Total Revenue"
+  },
+  "net_income": {
+    "value": 57048.0,
+    "period": "FY ending 2025-12-31",
+    "source": "income_statement: Net Income"
+  },
+  "price_change_1y": {
+    "value": 12.69,
+    "period": "12 months",
+    "source": "price_change_1y_pct"
+  },
+  "key_risk": "The supplied dataset does not contain explicit qualitative risk disclosures; however, reported items include $97,898 million in interest expenses and $628 million in restructuring and merger acquisition charges."
+}

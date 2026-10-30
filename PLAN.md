@@ -22,8 +22,8 @@ Tick boxes as you go (`- [x]`) and commit after every work session.
 3. Connect to Gemini
     - [x] Get a free key at aistudio.google.com and add it to `.env` as `GOOGLE_API_KEY=`
     - [x] Never commit `.env` (it is already blocked by `.gitignore`)
-    - [ ] Find a model name that works: list them with `python -c "from dotenv import load_dotenv; load_dotenv(); import os; from google import genai; c=genai.Client(api_key=os.environ['GOOGLE_API_KEY']); [print(m.name) for m in c.models.list() if 'flash' in m.name]"`
-    - [ ] Test one with a "Say hi in 3 words" call, then add it to `.env` as `GEMINI_MODEL=`
+    - [x] Find a model name that works: list them with `python -c "from dotenv import load_dotenv; load_dotenv(); import os; from google import genai; c=genai.Client(api_key=os.environ['GOOGLE_API_KEY']); [print(m.name) for m in c.models.list() if 'flash' in m.name]"`
+    - [x] Test one with a "Say hi in 3 words" call, then add it to `.env` as `GEMINI_MODEL=`
 4. Choose your companies
     - [x] 10 tickers set in `tools/snapshot.py` (JPM, BAC, GS, AAPL, MSFT, NVDA, KO, PG, WMT, MCD)
 5. Take the data snapshot and build the ground truth
@@ -44,25 +44,25 @@ Tick boxes as you go (`- [x]`) and commit after every work session.
 Build it one step at a time in `agent/workflow.py`, testing each step before the next.
 
 1. Define the brief
-    - [ ] In `agent/schema.py`, add fields for revenue, net income and price change, each with a source
+    - [x] In `agent/schema.py`, add fields for revenue, net income and price change, each with a source
 2. Fetch
-    - [ ] `fetch()` reads from `snapshot.json` and returns the data
+    - [x] `fetch()` reads from `snapshot.json` and returns the data
 3. Draft
-    - [ ] `draft()` sends the data to Gemini (model from `GEMINI_MODEL`) and asks it to fill the brief using ONLY that data
-    - [ ] Test on JPM and print the result
-    - [ ] Save the output to `briefs/JPM_baseline.json`
+    - [x] `draft()` sends the data to Gemini (model from `GEMINI_MODEL`) and asks it to fill the brief using ONLY that data
+    - [x] Test on JPM and print the result
+    - [x] Save the output to `briefs/JPM_baseline.json`
 4. Review
-    - [ ] `review()` sends the draft AND the data to the LLM and asks: "List every claim that does not match the data or has no source"
-    - [ ] It returns a list of flags (an empty list means pass)
-    - [ ] Test it by editing a draft to include a wrong number, and check the Reviewer catches it
+    - [x] `review()` sends the draft AND the data to the LLM and asks: "List every claim that does not match the data or has no source"
+    - [x] It returns a list of flags (an empty list means pass)
+    - [x] Test it by editing a draft to include a wrong number, and check the Reviewer catches it
 5. Loop
-    - [ ] If there are flags, send the draft back to `draft()` with the flags, at most 2 times
-    - [ ] Log every flag (ticker, claim, reason) to a file
+    - [x] If there are flags, send the draft back to `draft()` with the flags, at most 2 times
+    - [x] Log every flag (ticker, claim, reason) to a file
 6. Human approval
-    - [ ] Print the final brief and ask "Approve? (y/n)"
-    - [ ] Save approved briefs to `briefs/<TICKER>_reviewed.json`
+    - [x] Print the final brief and ask "Approve? (y/n)"
+    - [x] Save approved briefs to `briefs/<TICKER>_reviewed.json`
 7. Baseline switch
-    - [ ] `--no-review` skips steps 4 to 6, so you can run the comparison
+    - [x] `--no-review` skips steps 4 to 6, so you can run the comparison
 8. Save
     - [ ] Commit and push
 
@@ -137,3 +137,4 @@ Build it one step at a time in `agent/workflow.py`, testing each step before the
 ## Work log (one line per session, helps with feedback)
 
 - 20 Oct: set up env, switched to Gemini, built snapshot script, took snapshot
+- 30 Oct: picked gemini-3.8-flash, built fetch/draft/review/loop/approval; JPM baseline matches ground truth; reviewer caught a planted wrong net income. Free tier is slow (3-5 min per call, frequent 503s), retries added
